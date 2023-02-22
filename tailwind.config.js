@@ -32,7 +32,10 @@ module.exports = {
           default:'#eab308',
           dark:'#713f12'
         }
-      }
+      }, fontFamily: {
+        sans:[ 'Roboto','Montserrat', 'sans-serif'],
+        roboto:'Roboto'
+      },
     },
   },
   plugins: [],
