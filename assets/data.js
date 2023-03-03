@@ -12,7 +12,7 @@ export const webdevSliders = [
   {
     id: 1,
     title: "JavaScript",
-    desc: "From frontend to backend",
+    desc: "Frontend development",
     bg: "bg-[rgba(29,16,8,0.6)]",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYE4vlsJ-E4xZCv8vUvSJxXfI5_9MwFNq-5uajJdzkOpMxI_1pPOrb5eGKpieKlVrC9FI&usqp=CAU",
   },

@@ -13,10 +13,15 @@ module.exports = {
     extend: {
       colors:{
         'gray':{
-          light:'#6b7280',
-          default:'#374151',
-          dark:'#111827'
+          light:'#e5e7eb',
+          default:'#d1d5db',
+          dark:'#9ca3af'
         },
+      'dark':{
+        light:'#475569',
+        default:'#1e293b',
+        dark:'#0f172a'
+      },
         'sky':{
           light:'#0ea5e9',
           default:'#0369a1',

@@ -2,7 +2,11 @@ import React from 'react'
 
 const index = () => {
   return (
-    <div>index</div>
+    <div className='min-h-[90vh] flex h-full items-center justify-center'>
+
+        This page is under construction
+    
+    </div>
   )
 }
 
