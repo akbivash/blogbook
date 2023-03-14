@@ -21,6 +21,9 @@ body {
   margin: 0;
   padding: 0;
 }
+body::-webkit-scrollbar{
+  display: none;
+}
 
 .swiper {
   width: 100%;
@@ -53,4 +56,20 @@ color: #fff !important;
   background: #fff;
   margin: 2rem ;
 
+}
+
+.form_control{
+  display: grid;
+  width: 100%;
+  max-width: 400px;
+}
+.form_control input{
+  border: 1px solid rgb(212, 210, 210);
+  outline: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+
+}
+.form_control span.error{
+  color: red;
 }
