@@ -3,7 +3,7 @@ import { Post } from "../../typing";
 import { GetStaticProps } from "next";
 import {PortableText, PortableTextBlockComponent} from '@portabletext/react'
 import { RichTextComponent } from '@/components/RichTextComponent';
-
+import Image from 'next/image'
 interface Props{
   post:Post[]
 }
@@ -11,12 +11,12 @@ interface Props{
 function Blog({post}:Props) {
   return <div className=' w-full p-3 mx-auto max-w-[900px]'>
    
-      <img src={urlFor(post[0].mainImage).url()!} alt="" className='w-full max-w-[900px]  h-60 object-cover' />
+      <Image  src={urlFor(post[0].mainImage).url()!} alt="" width={1000} height={300} className='w-full max-w-[900px]  h-60 object-cover' />
 <article className='my-4 '>
   <h1 className='text-2xl '>{post[0].title}</h1>
   <h2>{post[0].description}</h2>
   <div className='my-4 grid gap-4'>
-    <img src={urlFor(post[0].author.image).url()} alt="" className='h-10 w-10 rounded-full object-cover' />
+    <img src={urlFor(post[0].author.image).url()}  alt="" className='h-10 w-10 rounded-full object-cover' />
     <p>
       Blog Post by <span className='text-green-600'>{post[0].author.name}</span> 
       {post[0]._createdAt !== null || undefined &&  <span> Published at {new Date(post[0]._createdAt).toLocaleString()}</span>}

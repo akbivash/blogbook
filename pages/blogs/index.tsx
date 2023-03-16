@@ -1,4 +1,5 @@
 import { Post } from '@/typing'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import {client, urlFor} from '../../sanity'
@@ -15,7 +16,7 @@ const{posts} = props
     
       return <Link href={`/blogs/${p.slug.current}`} key={p._id} className='w-full max-w-[700px] mx-auto shadow-xl shadow-[#c9d1cd]'>
         <div className=''>
-          <img src={urlFor(p.mainImage).url()} alt="" className='h-[300px] w-full object-cover'/>
+          <Image  src={urlFor(p.mainImage).url()} alt="" width={1000} height={300} className='h-[300px] w-full object-cover'/>
 <div className='my-4'>
 <p className='text-xl my-4'>{p.title}</p>
         <p>{p.description} by <span className='text-green-500'>{p.author?.name}</span></p>
