@@ -1,11 +1,11 @@
 import {urlFor,client} from '../../sanity'
 import { Post } from "../../typing";
 import { GetStaticProps } from "next";
-import {PortableText} from '@portabletext/react'
+import {PortableText, PortableTextBlockComponent} from '@portabletext/react'
 import { RichTextComponent } from '@/components/RichTextComponent';
 
 interface Props{
-  post:Post[] 
+  post:Post[]
 }
 
 function Blog({post}:Props) {
@@ -23,7 +23,7 @@ function Blog({post}:Props) {
 
     </p>
     <PortableText 
- value={post[0].body}
+ value={post[0].body }
  components={RichTextComponent}
  
  />
