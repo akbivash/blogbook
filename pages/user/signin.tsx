@@ -6,12 +6,11 @@ import { AuthContext } from '../../context/AuthContext';
 const SignIn: NextPage= (props):JSX.Element => {
   const[email, setEmail] = useState('')
   const[password, setPassword] = useState('')
-const{errorMsg, isLoading, signIn, user} = useContext(AuthContext)
+const{errorMsg, isLoading, signIn} = useContext(AuthContext)
 
  async function handleSubmit(e:FormEvent<HTMLFormElement>){
     e.preventDefault()
 signIn(email,password)
-console.log(user)
   }
   return (
     <div>
