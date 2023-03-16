@@ -3,11 +3,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import { signOut } from 'firebase/auth';
 import { AuthContext } from '../../context/AuthContext';
 
-const signout = () => {
+const SignOut = () => {
   const[isModalOpen, setIsModalOpen] = useState(false)
   const{signOut,  isLoggedIn} = useContext(AuthContext)
  
-console.log(isLoggedIn)
 
   return (
     <div className='py-20 text-center grid place-items-center gap-5 '>
@@ -21,4 +20,4 @@ console.log(isLoggedIn)
   )
 }
 
-export default signout
+export default SignOut
