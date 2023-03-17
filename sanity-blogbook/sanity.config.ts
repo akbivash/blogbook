@@ -5,7 +5,7 @@ import {schemaTypes} from './schemas'
 
 export default defineConfig({
   name: 'default',
-  title: 'sanity-serialcoding',
+  title: 'sanity-blogbook',
 
   projectId: '5fdi97u6',
   dataset: 'production',

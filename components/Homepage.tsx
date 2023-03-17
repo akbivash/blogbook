@@ -23,7 +23,7 @@ const Homepage = () => {
      <div className='text-center flex-1 '>
       <span className='flex  gap-3 py-2 justify-center items-center text-teal-600 font-semi-bold text-2xl'>Start exploring <img src="https://cdn-icons-png.flaticon.com/512/471/471094.png" className='h-20 w-20 md:block hidden' alt="" /></span>
       <p className='py-4 dark:text-gray-default  w-[80%] mx-auto tracking-wide text-gray-500 text-md leading-[1.7rem]'>
-      Explore the blogs written by different users across the world on different topics.  
+      Explore the blogs written by different users across the world.  
       </p>
       <Link href='/blogs' className=' p-2 text-white mx-auto bg-teal-600 w-fit font-semi-bold  text-2xl flex justify-center gap-2 items-center'>Get Started <FaHandPointLeft/></Link>
      </div>
@@ -46,7 +46,7 @@ const Homepage = () => {
     <img src="https://cdn-icons-png.flaticon.com/512/1475/1475146.png" className='w-20 h-20 bg-teal-500 rounded-full p-2' alt="" />
 </span>
 <h2 className=' text-2xl  text-teal-600'>Companies & Candidates</h2>
-<p className='text-gray-500 dark:text-gray-default text-md tracking-wide leading-[1.7rem]'>Not only does SerialCoder prepare candidates for technical interviews, we also help companies identify top technical talent. From sponsoring contests to providing online assessments and training, we offer numerous services to businesses.</p>
+<p className='text-gray-500 dark:text-gray-default text-md tracking-wide leading-[1.7rem]'>Not only does BlogBook prepare candidates for technical interviews, we also help companies identify top technical talent. From sponsoring contests to providing online assessments and training, we offer numerous services to businesses.</p>
 <Link href='/' className='text-xl p-2 text-white mx-auto bg-teal-600 w-fit flex justify-center items-center gap-2'>Opportunities <FaHandPointLeft/></Link>
 
     </div>

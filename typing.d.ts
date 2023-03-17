@@ -6,6 +6,7 @@ export interface Post {
         name:string,
         image:string
     },
+    comments: [],
     description:string,
     mainImage:{
         asset:{
@@ -16,4 +17,12 @@ export interface Post {
         current:string
     },
     body:[object]
+}
+export interface Comment {
+approved:boolean,
+_id: string;
+name: string;
+email: string;
+_createdAt:string;
+comment: string;
 }

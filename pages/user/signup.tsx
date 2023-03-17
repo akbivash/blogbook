@@ -82,7 +82,7 @@ const{signUp, errorMsg, isLoading, signInWithGoogle} = useContext(AuthContext)
           <input
             type="submit"
             value="submit"
-            className="cursor-pointer bg-green-300 w-fit mx-auto  disabled:opacity-[0.5]"
+            className="submit_btn disabled:opacity-[0.5]"
             disabled={isLoading}
        
           />
@@ -91,7 +91,7 @@ const{signUp, errorMsg, isLoading, signInWithGoogle} = useContext(AuthContext)
           <span>Or</span>
 
          <div className="form_control">
-         <button className="bg-green-300 rounded-sm p-2 disabled:opacity-[0.5]" disabled={isLoading} onClick={signInWithGoogle}>Sign in with Google</button>
+         <button className="submit_btn disabled:opacity-[0.5]" disabled={isLoading} onClick={signInWithGoogle}>Sign in with Google</button>
          </div>
           <div className="form_control">
           <span className="text-center">

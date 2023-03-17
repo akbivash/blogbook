@@ -30,7 +30,7 @@ signIn(email,password)
            required />
         </div>
         <div className="form_control">
-          <input type="submit" value='submit' className='cursor-pointer w-fit mx-auto bg-green-300 disabled:opacity-[0.5]' disabled={isLoading} />
+          <input type="submit" value='Login' className='submit_btn disabled:opacity-[0.5]' disabled={isLoading} />
         </div>
       </form>
     </div>

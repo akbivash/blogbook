@@ -30,6 +30,12 @@ export default defineType({
       to: {type: 'author'},
     }),
     defineField({
+      name: 'blockPost',
+      title: 'Block Post',
+      description:'Toggle if the post is inappropriate',
+      type: 'boolean',
+    }),
+    defineField({
       name: 'mainImage',
       title: 'Main image',
       type: 'image',

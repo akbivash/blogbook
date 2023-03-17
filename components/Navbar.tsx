@@ -10,7 +10,6 @@ const Navbar = () => {
   const { isLoggedIn } = useContext(AuthContext);
   const[isMenuOpen, setIsMenuOpen] = useState(false)
   const[theme, setTheme] = useState('light')
-const[isDark, setIsDark] = useState(false)
 
   useEffect(() => {
     document.body.className = theme
@@ -25,7 +24,6 @@ const[isDark, setIsDark] = useState(false)
   const handleTheme = () => {
     if(theme === 'light'){
       setTheme('dark')
-      // setIsDark(true)
     }else{
       setTheme('light')
       // setIsDark(false)
@@ -35,7 +33,7 @@ const[isDark, setIsDark] = useState(false)
   return (
     <div className="flex dark:text-gray-light  text-gray-500  items-center justify-between  max-w-[1400px] w-full    px-4  sm:px-8 text-xl">
       <Link href="/" className={styles.code}>
-        serial<span className="text-teal-600">Coding</span>
+        Blog<span className="text-teal-600">Book</span>
       </Link>
 
 
@@ -49,14 +47,14 @@ const[isDark, setIsDark] = useState(false)
       <div className="hidden sm:flex gap-4 md:gap-8 lg:px-10">
     <Link href="/blogs" onClick={() => closeMenu()}>Blogs</Link>
      
-       {isLoggedIn === false ?  <Link href="/user/signup">Sign in</Link> :  <Link href="/user/account">Account</Link>}
+       {isLoggedIn === false ?  <Link href="/user/signup">Sign Up</Link> :  <Link href="/user/account">Account</Link>}
       </div>
       </div>  
       {/* sidebar  */}
      
   <div className={`${isMenuOpen ? "fixed dark:text-gray-light dark:bg-dark-dark top-16 grid place-content-center gap-10 transition-all duration-300 bg-gray-100 py-4 text-center w-full max-w-[300px] right-0":"fixed transition-all duration-300 top-16 right-[-50%] grid place-content-center gap-10"}`}>
     <Link href="/blogs" onClick={() => closeMenu()}>Blogs</Link>
-    {isLoggedIn === false ?  <Link href="/user/signup" onClick={closeMenu}>Sign in</Link> :  <Link href="/user/account" onClick={closeMenu}>Account</Link>}
+    {isLoggedIn === false ?  <Link href="/user/signup" onClick={closeMenu}>Sign Up</Link> :  <Link href="/user/account" onClick={closeMenu}>Account</Link>}
 
    
   </div>
