@@ -36,7 +36,6 @@ function Blog({ post }: Props) {
   });
  
   useEffect(() => {
-
     return () => {
       setIsModalOpen(false)
     }
