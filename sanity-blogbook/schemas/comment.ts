@@ -5,10 +5,7 @@ export default defineType({
   title: 'Comment',
   type: 'document',
   fields: [
-    defineField({
-      name: 'name',
-      type: 'string',
-    }),
+   
     defineField({
       name: 'email',
       type: 'string',

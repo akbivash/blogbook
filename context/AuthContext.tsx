@@ -10,6 +10,7 @@ import { createContext, useEffect, useState } from "react";
 
 
 export type AuthContextType = {
+
   errorMsg: string;
   isLoading: boolean;
   isLoggedIn: boolean;
@@ -47,7 +48,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const result = await signInWithPopup(auth, provider);
       setIsLoading(false);
       let token = await result.user.getIdToken();
-      localStorage.setItem("Token", token);
+      localStorage.setItem("User", JSON.stringify({token, emailId: result.user.email}));
+     
       router.push("/user/account");
     } catch (error: any) {
       console.error(error);
@@ -61,7 +63,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setIsLoading(true);
       const res = await createUserWithEmailAndPassword(auth, email, password);
       let token = await res.user.getIdToken();
-      localStorage.setItem("Token", token);
+      localStorage.setItem("User", JSON.stringify({token, emailId: res.user.email}));
+     
+
+      // localStorage.setItem("Token", token);
+      // localStorage.setItem("Email", emailId!);
 
       setIsLoading(false);
       router.push("/user/account");
@@ -77,7 +83,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const res = await signInWithEmailAndPassword(auth, email, password);
       setIsLoading(false);
       let token = await res.user.getIdToken();
-      localStorage.setItem("Token", token);
+      localStorage.setItem("User", JSON.stringify({token, emailId: res.user.email}));
+  
+
+      // localStorage.setItem("Token", token);
+      // localStorage.setItem("Email", emailId!);
+
       router.push("/blogs");
     } catch (err: any) {
       setErrorMsg(err.message);
@@ -88,7 +99,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const signOut = async () => {
     await auth.signOut();
-    localStorage.removeItem("Token");
+    localStorage.removeItem("User");
+ 
+
     router.push("/user/signup");
   };
 
@@ -108,7 +121,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     errorMsg,
     signIn,
     signOut,
-    isLoggedIn,
+    isLoggedIn
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

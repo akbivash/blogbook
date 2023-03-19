@@ -1,8 +1,12 @@
 import Head from "next/head";
 import Homepage from "@/components/Homepage";
 import Footer from "@/components/Footer";
+import { getServerSideProps as getBlogsServerSideProps, Props } from "./blogs";
+import Blogs from "@/components/Blogs";
 
-export default function Home() {
+
+export default function Home({posts}:Props) {
+
   return (
     <>
       <Head>
@@ -13,7 +17,15 @@ export default function Home() {
       </Head>
 
       <Homepage />
+      <Blogs posts={posts}/>
       <Footer />
     </>
   );
+}
+
+export async function getServerSideProps(){
+  const {props} = await getBlogsServerSideProps()
+  return{
+    props:props
+  }
 }

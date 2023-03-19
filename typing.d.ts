@@ -26,3 +26,17 @@ email: string;
 _createdAt:string;
 comment: string;
 }
+
+interface Props {
+    post: Post[];
+  }
+  
+  interface User{
+    emailId: string
+  }
+  
+  interface InputData {
+    _id: string;
+    email: any;
+    comment: string;
+  }
