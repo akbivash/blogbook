@@ -220,7 +220,7 @@ function Blog({ post }: Props) {
               <span>Please sign in to comment</span>
               <span className="flex gap-3 justify-center">
                 <Link
-                  href="/user/signin"
+                  href="/user/signup"
                   className="bg-white text-dark-default px-4 py-1 "
                 >
                   Ok

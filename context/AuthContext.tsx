@@ -64,11 +64,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       let token = await res.user.getIdToken();
       localStorage.setItem("User", JSON.stringify({token, emailId: res.user.email}));
-     
-
-      // localStorage.setItem("Token", token);
-      // localStorage.setItem("Email", emailId!);
-
       setIsLoading(false);
       router.push("/user/account");
     } catch (err: any) {
@@ -85,10 +80,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       let token = await res.user.getIdToken();
       localStorage.setItem("User", JSON.stringify({token, emailId: res.user.email}));
   
-
-      // localStorage.setItem("Token", token);
-      // localStorage.setItem("Email", emailId!);
-
       router.push("/blogs");
     } catch (err: any) {
       setErrorMsg(err.message);
@@ -100,8 +91,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const signOut = async () => {
     await auth.signOut();
     localStorage.removeItem("User");
- 
-
     router.push("/user/signup");
   };
 
