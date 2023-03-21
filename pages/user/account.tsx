@@ -6,6 +6,7 @@ import { AuthContext } from '../../context/AuthContext';
 const SignOut = () => {
   const[isModalOpen, setIsModalOpen] = useState(false)
   const{signOut,  isLoggedIn} = useContext(AuthContext)
+  console.log('isLoggedIn ' + isLoggedIn)
  
 
   return (

@@ -101,6 +101,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }else{
       setIsLoggedIn(false)
     }
+    console.log('isLoggedIn ' + isLoggedIn)
+
   }, [signIn, signUp, signInWithGoogle,signOut]);
 
   const value: AuthContextType = {
