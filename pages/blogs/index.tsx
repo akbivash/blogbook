@@ -26,7 +26,7 @@ const query = `*[_type == 'post']{
   },
   mainImage,
   slug,
-  categories
+  categories 
 }`
 
 

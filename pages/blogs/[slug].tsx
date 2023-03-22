@@ -8,7 +8,6 @@ import { FormEvent, useContext, useState } from "react";
 import axios from "axios";
 import moment from "moment";
 import Modal from "@/components/Modal";
-import Link from "next/link";
 import { useGlobalContext } from "@/context/AppContext";
 import { useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
