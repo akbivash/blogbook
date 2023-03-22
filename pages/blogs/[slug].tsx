@@ -7,38 +7,36 @@ import Image from "next/image";
 import { FormEvent, useContext, useState } from "react";
 import axios from "axios";
 import moment from "moment";
-import { AuthContext } from "@/context/AuthContext";
 import Modal from "@/components/Modal";
 import Link from "next/link";
 import { useGlobalContext } from "@/context/AppContext";
 import { useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
 import { Toaster, toast } from "react-hot-toast";
+import { signIn, useSession } from "next-auth/react";
 
 function Blog({ post }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { isLoggedIn } = useContext(AuthContext);
   const { isModalOpen, setIsModalOpen } = useGlobalContext();
   const [user, setUser] = useState<User>();
   const [comments, setComments] = useState([]);
+const {data:session} = useSession()
+
   const [InputData, setInputData] = useState<InputData>({
     _id: post[0]._id,
-    email: "",
+    email: session?.user?.email,
     comment: "",
+    image:session?.user?.image
   });
+
 
   useEffect(() => {
   handleRefresh()
-    const data = localStorage.getItem("User");
-    if (data !== null) {
-      const user: User = JSON.parse(data);
-      setUser(user);
-    }
+  
     return () => {
       setIsModalOpen(false);
     };
   }, []);
-
 
  
 
@@ -46,17 +44,16 @@ function Blog({ post }: Props) {
     const res = await axios.get(`/api/getComment?postId=${post[0]._id}`);
           const data = await res.data;
           setComments(data);
- console.log('fuck')
-
-  
   };
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (isLoggedIn) {
+    if (session) {
       try {
         setIsSubmitting(true);
         const commentToast = toast.loading("Posting Comment...");
+    InputData.email = session?.user?.email,
+InputData.image = session?.user?.image
         await axios.post("/api/createComment", InputData);
         console.log("ok");
         setIsSubmitting(false);
@@ -133,8 +130,8 @@ function Blog({ post }: Props) {
           src={urlFor(post[0].mainImage).url()!}
           alt=""
           width={1000}
-          height={300}
-          className="w-full max-w-[900px]  h-60 object-cover"
+          height={500}
+          className="w-full max-w-[900px]  h-[400px] object-contain"
         />
         <article className="my-4 text-xl">
           <h1 className="text-2xl ">{post[0].title}</h1>
@@ -196,13 +193,19 @@ function Blog({ post }: Props) {
                   key={c._id}
                   className="shadow-sm shadow-gray-400 p-4 grid gap-4 mx-auto w-full max-w-[500px]"
                 >
-                  <span className="text-green-500 font-semibold ">
+                  <div className="flex items-center gap-2">
+                    {c.image && <Image src={c.image}   alt="image"
+          width={50}
+          height={50}
+          className='rounded-full'
+          />}
+                    <span className="text-green-500 font-semibold ">
                     {c.email}{" "}
-                  </span>
+                  </span></div>
                   <p>{c.comment}</p>
                   <span className="text-gray-500 flex items-center gap-6">
                     {timeAgo}
-                    {c.email === user?.emailId && (
+                    {c.email === session?.user?.email && (
                       <button onClick={() => handleDelete(c._id)}>
                         <FaTrash />
                       </button>
@@ -219,12 +222,12 @@ function Blog({ post }: Props) {
             <div className="grid gap-2">
               <span>Please sign in to comment</span>
               <span className="flex gap-3 justify-center">
-                <Link
-                  href="/user/signup"
+                <button
+                onClick={() => signIn()}
                   className="bg-white text-dark-default px-4 py-1 "
                 >
                   Ok
-                </Link>
+                </button>
                 <button
                   onClick={() => setIsModalOpen(false)}
                   className="bg-dark-default px-4 py-1"

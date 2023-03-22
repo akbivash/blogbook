@@ -1,12 +1,11 @@
-import { AuthContext } from '@/context/AuthContext'
 import Link from 'next/link'
 // import React from 'react'
 import { FaHandPointLeft } from 'react-icons/fa'
-import {useContext} from 'react'
+import { useSession } from 'next-auth/react';
 
 
 const Homepage = () => {
-    const{isLoggedIn} = useContext(AuthContext)
+  const{data:session} = useSession()
   return  <>
     <div className='flex justify-around py-10 md:px-3 md:py-18'>
     <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190813181110/7-Tips-and-Tricks-to-Learn-Programming-Faster.png" alt=""  className='lg:block hidden w-full rounded-md -rotate-3 max-w-[500px] h-[300px]' />
@@ -14,7 +13,7 @@ const Homepage = () => {
      <h2 className='text-5xl font-bold  bg-clip-text bg-gradient-to-r text-transparent from-teal-500 to-lime-600 md:text-[4rem] tracking-wider lg:text-[5rem]'>Read, write <br />and connect</h2>
      <p className='my-2 dark:text-gray-200 text-gray-500 text-xl tracking-wide'>It is free to post your thinking, learn new things, and connect with peoples.</p>
      
-{!isLoggedIn && <Link href='/user/signup' className='bg-teal-600 w-fit mx-auto px-4 py-2 rounded-sm text-white'>Create Account</Link> }
+{!session && <Link href='/user/signup' className='bg-teal-600 w-fit mx-auto px-4 py-2 rounded-sm text-white'>Create Account</Link> }
     </div>
    </div>
  

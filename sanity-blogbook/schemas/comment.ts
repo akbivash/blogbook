@@ -20,6 +20,12 @@ export default defineType({
       description:'Toggle if the comment is inappropriate',
       type: 'boolean',
     }),
+    defineField({
+      name: 'image',
+      title: 'Image',
+      type: 'url',
+    
+    }),
 
     defineField({
       name: 'post',

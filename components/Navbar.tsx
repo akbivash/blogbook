@@ -4,13 +4,12 @@ import {AiOutlineMenu} from 'react-icons/ai'
 import {RxCross1} from 'react-icons/rx'
 import styles from "@/styles/Home.module.css";
 import {BsFillMoonFill, BsFillSunFill, BsMoon} from 'react-icons/bs'
-import { AuthContext } from "@/context/AuthContext";
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 const Navbar = () => {
-  const { isLoggedIn } = useContext(AuthContext);
   const[isMenuOpen, setIsMenuOpen] = useState(false)
   const[theme, setTheme] = useState('light')
-
+const{data:session} = useSession()
   useEffect(() => {
     document.body.className = theme
   },[theme])
@@ -46,15 +45,15 @@ const Navbar = () => {
 
       <div className="hidden sm:flex gap-4 md:gap-8 lg:px-10">
     <Link href="/blogs" onClick={() => closeMenu()}>Blogs</Link>
+    {!session ?  <button onClick={() => signIn()}>Sign In</button> : <button onClick={() => signOut()}>Sign Out</button> }
      
-       {isLoggedIn === false ?  <Link href="/user/signup">Sign Up</Link> :  <Link href="/user/account">Account</Link>}
       </div>
       </div>  
       {/* sidebar  */}
      
   <div className={`${isMenuOpen ? "fixed dark:text-gray-light dark:bg-dark-dark top-16 grid place-content-center gap-10 transition-all duration-300 bg-gray-100 py-4 text-center w-full max-w-[300px] right-0":"fixed transition-all duration-300 top-16 right-[-50%] grid place-content-center gap-10"}`}>
     <Link href="/blogs" onClick={() => closeMenu()}>Blogs</Link>
-    {isLoggedIn === false ?  <Link href="/user/signup" onClick={closeMenu}>Sign Up</Link> :  <Link href="/user/account" onClick={closeMenu}>Account</Link>}
+    {!session ?  <button onClick={() => signIn()}>Sign In</button> : <button onClick={() => signOut()}>Sign Out</button> }
 
    
   </div>

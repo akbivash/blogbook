@@ -8,6 +8,7 @@ export interface Post {
     },
     comments: [],
     description:string,
+    categories:[],
     mainImage:{
         asset:{
             url:string
@@ -18,6 +19,7 @@ export interface Post {
     },
     body:[object]
 }
+
 export interface Comment {
 approved:boolean,
 _id: string;
@@ -25,10 +27,12 @@ name: string;
 email: string;
 _createdAt:string;
 comment: string;
+image:any;
 }
 
 interface Props {
     post: Post[];
+    postsWithCategory:Post[]
   }
   
   interface User{
@@ -39,4 +43,5 @@ interface Props {
     _id: string;
     email: any;
     comment: string;
+    image:any
   }

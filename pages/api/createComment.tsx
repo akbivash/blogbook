@@ -5,7 +5,7 @@ export default async function createComment(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { _id,  email, comment } =  req.body
+  const { _id,  email, comment , image} =  req.body
   try {
     await client.create({
       _type: "comment",
@@ -16,6 +16,7 @@ export default async function createComment(
   
       email,
       comment,
+      image
     });
   res.status(200).send('comment submitted')
 

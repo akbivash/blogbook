@@ -17,7 +17,11 @@ export default function Home({posts}:Props) {
       </Head>
 
       <Homepage />
-      <Blogs posts={posts}/>
+    <div>
+    <h2 className='text-teal-600 text-xl  border-b-2 mb-4  w-fit mx-auto border-teal-600'>Latest Blogs</h2>
+
+    <Blogs posts={posts}/>
+    </div>
       <Footer />
     </>
   );

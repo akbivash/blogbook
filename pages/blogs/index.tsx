@@ -10,7 +10,7 @@ posts:[Post]
 const Home = (props:Props) => {
 const{posts} = props
 
-  return ( <Blogs posts={posts}/>)
+  return ( <Blogs posts={posts} />)
 }
 
 export default Home
@@ -26,12 +26,15 @@ const query = `*[_type == 'post']{
   },
   mainImage,
   slug,
+  categories
 }`
+
 
 const posts = await client.fetch(query)
 return {
   props:{
-posts
+posts,
+
   }
 }
 }
