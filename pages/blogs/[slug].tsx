@@ -162,6 +162,7 @@ InputData.image = session?.user?.image
           <form action="" className="mt-4   grid gap-4" onSubmit={handleSubmit}>
             <div className="form_control">
               <textarea
+              className="dark:text-gray-700 text-xl"
                 placeholder="Nice blog.."
                 name="comment"
                 required

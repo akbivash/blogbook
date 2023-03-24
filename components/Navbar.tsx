@@ -32,7 +32,7 @@ const{data:session} = useSession()
   return (
     <div className="flex dark:text-gray-light  text-gray-500  items-center justify-between  max-w-[1400px] w-full    px-4  sm:px-8 text-xl">
       <Link href="/" className={styles.code}>
-        Blog<span className="text-teal-600">Book</span>
+        Code<span className="text-teal-600">Blog</span>
       </Link>
 
 

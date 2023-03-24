@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <div className='grid gap-2 pt-10 text-gray-500 sm:flex  justify-around pb-5'>
         <span className='flex justify-center '>
-            Copyright @2023 SerialCoder
+            Copyright @2023 CodeBlog
         </span>
-        <div className='flex flex-wrap justify-center gap-2 '>
+        <div className='flex flex-wrap justify-center gap-4 '>
             <Link href=''>Help</Link>
             <Link href=''>Terms</Link>
             <Link href=''>Privacy Policy</Link>
