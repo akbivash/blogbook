@@ -57,8 +57,33 @@ export default defineType({
     defineField({
       name: 'body',
       title: 'Body',
-      type: 'blockContent',
+      type: "array",
+  of: [
+    {
+      title: "Block",
+      type: "block",
+    },
+    {
+      type: "image",
+      options: { hotspot: true },
+    },
+{
+  type:'code',
+  title:'code',
+  options: {
+    language: 'javascript',
+    languageAlternatives: [
+      {title: 'Javascript', value: 'javascript'},
+      {title: 'Python', value: 'python'},
+      {title: 'CSS', value: 'css'},
+    ],
+    withFilename: true,
+  },
+}
+  
+  ],
     }),
+   
   ],
 
   preview: {
@@ -73,3 +98,7 @@ export default defineType({
     },
   },
 })
+
+
+
+const seconds = new Date().getTime() / 1000; 
