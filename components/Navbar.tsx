@@ -8,7 +8,7 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 
 const Navbar = () => {
   const[isMenuOpen, setIsMenuOpen] = useState(false)
-  const[theme, setTheme] = useState('light')
+  const[theme, setTheme] = useState('dark')
 const{data:session} = useSession()
   useEffect(() => {
     document.body.className = theme

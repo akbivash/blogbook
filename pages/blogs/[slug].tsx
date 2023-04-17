@@ -19,30 +19,29 @@ function Blog({ post }: Props) {
   const { isModalOpen, setIsModalOpen } = useGlobalContext();
   const [user, setUser] = useState<User>();
   const [comments, setComments] = useState([]);
-const {data:session} = useSession()
+  const { data: session } = useSession();
 
   const [InputData, setInputData] = useState<InputData>({
     _id: post[0]._id,
     email: session?.user?.email,
+    name: session?.user?.name ?? "Unknown",
+
     comment: "",
-    image:session?.user?.image
+    image: session?.user?.image,
   });
 
-
   useEffect(() => {
-  handleRefresh()
-  
+    handleRefresh();
+
     return () => {
       setIsModalOpen(false);
     };
   }, []);
 
- 
-
   const handleRefresh = async () => {
     const res = await axios.get(`/api/getComment?postId=${post[0]._id}`);
-          const data = await res.data;
-          setComments(data);
+    const data = await res.data;
+    setComments(data);
   };
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -51,8 +50,8 @@ const {data:session} = useSession()
       try {
         setIsSubmitting(true);
         const commentToast = toast.loading("Posting Comment...");
-    InputData.email = session?.user?.email,
-InputData.image = session?.user?.image
+        (InputData.email = session?.user?.email),
+          (InputData.image = session?.user?.image);
         await axios.post("/api/createComment", InputData);
         console.log("ok");
         setIsSubmitting(false);
@@ -60,15 +59,13 @@ InputData.image = session?.user?.image
         toast.success("Comment posted", {
           id: commentToast,
         });
-       
-        setTimeout(async() => {
+
+        setTimeout(async () => {
           const res = await axios.get(`/api/getComment?postId=${post[0]._id}`);
           const data = await res.data;
           setComments(data);
-          handleRefresh()
-     
-        },1000)
-
+          handleRefresh();
+        }, 1000);
       } catch (err) {
         setIsSubmitting(false);
         console.log(err);
@@ -82,7 +79,7 @@ InputData.image = session?.user?.image
     try {
       const deleteToast = toast.loading("Deleting");
 
-   const res =   await fetch(`/api/deleteComment`, {
+      const res = await fetch(`/api/deleteComment`, {
         method: "DELETE",
         body: JSON.stringify({
           commentId: id,
@@ -91,15 +88,13 @@ InputData.image = session?.user?.image
       toast.success("Deleted succesfully...", {
         id: deleteToast,
       });
-    
-      setTimeout(async() => {
+
+      setTimeout(async () => {
         const res = await axios.get(`/api/getComment?postId=${post[0]._id}`);
         const data = await res.data;
         setComments(data);
-        handleRefresh()
-   
-      },1000)
-
+        handleRefresh();
+      }, 1000);
     } catch (err) {
       console.log(err);
       toast.error("Failed");
@@ -115,6 +110,7 @@ InputData.image = session?.user?.image
       email: user?.emailId,
     }));
   }
+
   return (
     <>
       <Toaster position="top-center" reverseOrder={true} />
@@ -162,7 +158,7 @@ InputData.image = session?.user?.image
           <form action="" className="mt-4   grid gap-4" onSubmit={handleSubmit}>
             <div className="form_control">
               <textarea
-              className="dark:text-gray-700 text-xl"
+                className="dark:text-gray-700 text-xl"
                 placeholder="Nice blog.."
                 name="comment"
                 required
@@ -187,6 +183,7 @@ InputData.image = session?.user?.image
           </h2>
           {comments &&
             comments.map((c: Comment) => {
+              console.log(c);
               const timeAgo = moment(c._createdAt).fromNow();
               return (
                 <div
@@ -194,14 +191,19 @@ InputData.image = session?.user?.image
                   className="shadow-sm shadow-gray-400 p-4 grid gap-4 mx-auto w-full max-w-[500px]"
                 >
                   <div className="flex items-center gap-2">
-                    {c.image && <Image src={c.image}   alt="image"
-          width={50}
-          height={50}
-          className='rounded-full'
-          />}
+                    {c.image && (
+                      <Image
+                        src={c.image}
+                        alt="image"
+                        width={50}
+                        height={50}
+                        className="rounded-full"
+                      />
+                    )}
                     <span className="text-green-500 font-semibold ">
-                    {c.email}{" "}
-                  </span></div>
+                      {c.name}{" "}
+                    </span>
+                  </div>
                   <p>{c.comment}</p>
                   <span className="text-gray-500 flex items-center gap-6">
                     {timeAgo}
@@ -223,7 +225,7 @@ InputData.image = session?.user?.image
               <span>Please sign in to comment</span>
               <span className="flex gap-3 justify-center">
                 <button
-                onClick={() => signIn()}
+                  onClick={() => signIn()}
                   className="bg-white text-dark-default px-4 py-1 "
                 >
                   Ok

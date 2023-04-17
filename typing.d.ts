@@ -43,5 +43,6 @@ interface Props {
     _id: string;
     email: any;
     comment: string;
-    image:any
+    image:any,
+    name:string
   }
