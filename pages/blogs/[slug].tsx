@@ -11,28 +11,27 @@ import Modal from "@/components/Modal";
 import { useGlobalContext } from "@/context/AppContext";
 import { useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
-import { Toaster, toast } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { signIn, useSession } from "next-auth/react";
+import { deleteComment } from "@/utils/apiCalls/deleteComment";
+import { createComment } from "@/utils/apiCalls/createComment";
 
 function Blog({ post }: Props) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { isModalOpen, setIsModalOpen } = useGlobalContext();
   const [user, setUser] = useState<User>();
   const [comments, setComments] = useState([]);
   const { data: session } = useSession();
+  const { state, setIsModalOpen, setIsLoading } = useGlobalContext();
 
   const [InputData, setInputData] = useState<InputData>({
     _id: post[0]._id,
     email: session?.user?.email,
     name: session?.user?.name ?? "Unknown",
-
     comment: "",
     image: session?.user?.image,
   });
 
   useEffect(() => {
     handleRefresh();
-
     return () => {
       setIsModalOpen(false);
     };
@@ -44,61 +43,16 @@ function Blog({ post }: Props) {
     setComments(data);
   };
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (session) {
-      try {
-        setIsSubmitting(true);
-        const commentToast = toast.loading("Posting Comment...");
-        (InputData.email = session?.user?.email),
-          (InputData.image = session?.user?.image);
-        await axios.post("/api/createComment", InputData);
-        console.log("ok");
-        setIsSubmitting(false);
-        InputData.comment = "";
-        toast.success("Comment posted", {
-          id: commentToast,
-        });
-
-        setTimeout(async () => {
-          const res = await axios.get(`/api/getComment?postId=${post[0]._id}`);
-          const data = await res.data;
-          setComments(data);
-          handleRefresh();
-        }, 1000);
-      } catch (err) {
-        setIsSubmitting(false);
-        console.log(err);
-        toast.error("Failed");
-      }
-    } else {
-      setIsModalOpen(true);
-    }
-  }
-  async function handleDelete(id: string) {
-    try {
-      const deleteToast = toast.loading("Deleting");
-
-      const res = await fetch(`/api/deleteComment`, {
-        method: "DELETE",
-        body: JSON.stringify({
-          commentId: id,
-        }),
-      });
-      toast.success("Deleted succesfully...", {
-        id: deleteToast,
-      });
-
-      setTimeout(async () => {
-        const res = await axios.get(`/api/getComment?postId=${post[0]._id}`);
-        const data = await res.data;
-        setComments(data);
-        handleRefresh();
-      }, 1000);
-    } catch (err) {
-      console.log(err);
-      toast.error("Failed");
-    }
+  function handleSubmit(e: any) {
+    createComment(
+      e,
+      InputData,
+      session,
+      setIsLoading,
+      setIsModalOpen,
+      setComments,
+      handleRefresh
+    );
   }
 
   function handleChange(
@@ -116,7 +70,7 @@ function Blog({ post }: Props) {
       <Toaster position="top-center" reverseOrder={true} />
       <div
         className={`${
-          isModalOpen
+          state.isModalOpen
             ? " w-full p-3 mx-auto max-w-[900px] z-10 overflow-y-hidden blur-sm  "
             : " w-full p-3 mx-auto max-w-[900px] z-10 "
         } `}
@@ -150,6 +104,7 @@ function Blog({ post }: Props) {
             <PortableText value={post[0].body} components={RichTextComponent} />
           </div>
         </article>
+
         {/* comment section  */}
         <hr className="border-red-300 py-4" />
 
@@ -169,7 +124,7 @@ function Blog({ post }: Props) {
             <input type="hidden" name="_id" value={InputData._id} />
             <button
               className="submit_btn disabled:opacity-[0.5]"
-              disabled={isSubmitting}
+              disabled={state.isLoading}
               type="submit"
             >
               Submit
@@ -183,7 +138,6 @@ function Blog({ post }: Props) {
           </h2>
           {comments &&
             comments.map((c: Comment) => {
-              console.log(c);
               const timeAgo = moment(c._createdAt).fromNow();
               return (
                 <div
@@ -208,7 +162,17 @@ function Blog({ post }: Props) {
                   <span className="text-gray-500 flex items-center gap-6">
                     {timeAgo}
                     {c.email === session?.user?.email && (
-                      <button onClick={() => handleDelete(c._id)}>
+                      <button
+                        onClick={() =>
+                          deleteComment(
+                            c._id,
+                            setIsLoading,
+                            handleRefresh,
+                            setComments,
+                            comments
+                          )
+                        }
+                      >
                         <FaTrash />
                       </button>
                     )}{" "}
@@ -218,7 +182,7 @@ function Blog({ post }: Props) {
             })}
         </div>
       </div>
-      {isModalOpen && (
+      {state.isModalOpen && (
         <Modal
           children={
             <div className="grid gap-2">

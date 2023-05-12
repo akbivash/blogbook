@@ -7,7 +7,7 @@ export default async function createComment(
 ) {
   const { _id,  email, comment , image} =  req.body
   try {
-    await client.create({
+const newComment =    await client.create({
       _type: "comment",
       post: {
         _type: "reference",
@@ -18,7 +18,7 @@ export default async function createComment(
       comment,
       image
     });
-  res.status(200).send('comment submitted')
+  res.status(200).send(newComment)
 
   } catch (err) {
     console.log(err);

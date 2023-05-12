@@ -12,7 +12,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
       .commit()
       .then((response) => {
         console.log(`Document with ID ${commentId} deleted successfully`);
-        res.status(200).json({msg:'success'})
+        res.status(200).send(response)
       })
       .catch((error) => {
         console.error(`Error deleting document:`, error.message);
