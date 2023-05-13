@@ -23,7 +23,7 @@ const Homepage = () => {
  </div>
      <div className='text-center flex-1 '>
       <span className='flex  gap-3 py-2 justify-center items-center text-teal-600 font-semi-bold text-2xl'>Start exploring <img src="https://cdn-icons-png.flaticon.com/512/471/471094.png" className='h-20 w-20 md:block hidden' alt="" /></span>
-      <p className='py-4 dark:text-gray-default  w-[80%] mx-auto tracking-wide text-gray-500 text-md leading-[1.7rem]'>
+      <p className='py-4 text-xl dark:text-gray-default  w-[80%] mx-auto tracking-wide text-gray-500  leading-[1.7rem]'>
       Explore the blogs written by professionals.  
       </p>
       <Link href='/blogs' className=' p-2 text-white mx-auto bg-teal-600 w-fit font-semi-bold  text-2xl flex justify-center gap-2 items-center'>Get Started <FaHandPointLeft/></Link>
