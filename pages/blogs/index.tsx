@@ -1,19 +1,21 @@
-// import { Post } from '@/typing'
-// import Blogs from '@/components/Blogs'
-// import React from 'react'
-// import {client} from '../../sanity'
+import { Post } from '@/typing'
+import Blogs from '@/components/Blogs'
+import React from 'react'
+import {client} from '../../sanity'
 
-// export interface Props {
-// posts:[Post]
-// }
+export interface Props {
+posts:[Post]
+}
 
-// const Home = (props:Props) => {
-// const{posts} = props
+const Home = (props:Props) => {
+const{posts} = props
 
-//   return ( <Blogs  />)
-// }
+  return ( <Blogs  />)
+}
 
-// export default Home
+export default Home
+
+// if ssr needed 
 
 // export const getServerSideProps = async () => {
 // const query = `*[_type == 'post']{

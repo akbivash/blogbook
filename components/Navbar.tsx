@@ -37,7 +37,7 @@ const{data:session} = useSession()
 
 
 <div className="flex items-center gap-4">
-<span className="cursor-pointer text-2xl" onClick={handleTheme}>{theme === 'dark' ? <BsFillMoonFill/> :   <BsFillSunFill />}</span>
+<span className="cursor-pointer text-2xl" onClick={handleTheme}>{theme === 'light' ? <BsFillMoonFill/> :   <BsFillSunFill />}</span>
 <div className="sm:hidden">
 {!isMenuOpen ?  <AiOutlineMenu onClick={openMenu} className='text-xl cursor-pointer' /> : <RxCross1 onClick={closeMenu} className='text-xl cursor-pointer'/>}
   </div>  

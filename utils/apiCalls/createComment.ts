@@ -7,21 +7,19 @@ export async function createComment(
   session: any,
   setIsLoading: any,
   setIsModalOpen: any,
-  setComments:any,
- handleRefresh:any
+  setComments: any,
 ) {
   e.preventDefault();
-  let commentToast
+  let commentToast;
   if (session) {
     try {
       setIsLoading(true);
-    commentToast = toast.loading("Posting Comment...");
+      commentToast = toast.loading("Posting Comment...");
 
       (InputData.email = session?.user?.email),
         (InputData.image = session?.user?.image);
-    const res =  await axios.post("/api/createComment", InputData);
-    const newComment = res.data 
-console.log(newComment)
+      const res = await axios.post("/api/createComment", InputData);
+      const newComment = res.data;
       console.log("ok");
       setIsLoading(false);
       InputData.comment = "";
@@ -29,15 +27,12 @@ console.log(newComment)
         id: commentToast,
       });
 
-setComments((prev:any) => [...prev, newComment])
-  
+      setComments((prev: any) => [...prev, newComment]);
     } catch (err) {
       setIsLoading(false);
       console.log(err);
-      toast.error("Failed",{
-        
-          id: commentToast
-        
+      toast.error("Failed", {
+        id: commentToast,
       });
     }
   } else {

@@ -28,7 +28,7 @@ import { client } from "@/sanity";
               mainImage,
               slug,
               categories 
-               }`;
+               }  `;
                   const posts = await client.fetch(query, { category });
                   setPosts(posts);
         }
