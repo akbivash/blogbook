@@ -1,7 +1,7 @@
-import { urlFor } from '@/sanity';
-import Image from 'next/image';
-import React from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter'
+import { urlFor } from "@/sanity";
+import Image from "next/image";
+import React from "react";
+import SyntaxHighlighter from "react-syntax-highlighter";
 export const RichTextComponent = {
   types: {
     image: ({ value }: any) => {
@@ -19,13 +19,9 @@ export const RichTextComponent = {
     },
     code: ({ value }: any) => {
       return (
-   
-          <SyntaxHighlighter className='bg-dark-dark' >
-      
-      {value.code}
-
- </SyntaxHighlighter>
-   
+        <SyntaxHighlighter className="bg-dark-dark">
+          {value.code}
+        </SyntaxHighlighter>
       );
     },
   },

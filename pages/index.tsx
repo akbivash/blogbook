@@ -1,8 +1,7 @@
 import Head from "next/head";
-import Homepage from "@/components/Homepage";
-import Footer from "@/components/Footer";
-// import { getServerSideProps as getBlogsServerSideProps, Props } from "./blogs";
 import Blogs from "@/components/Blogs";
+import Hero from "@/components/Hero";
+import Footer from "@/components/Footer";
 
 
 export default function Home() {
@@ -16,7 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Homepage />
+      <Hero />
     <div>
     <h2 className='text-teal-600 text-xl  border-b-2 mb-4  w-fit mx-auto border-teal-600'>Latest Blogs</h2>
     <Blogs />
@@ -25,12 +24,3 @@ export default function Home() {
     </>
   );
 }
-
-// if ssr needed
-
-// export async function getServerSideProps(){
-//   const {props} = await getBlogsServerSideProps()
-//   return{
-//     props:props
-//   }
-// }

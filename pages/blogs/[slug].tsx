@@ -13,8 +13,9 @@ import { useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
 import { Toaster } from "react-hot-toast";
 import { signIn, useSession } from "next-auth/react";
-import { deleteComment } from "@/utils/apiCalls/deleteComment";
-import { createComment } from "@/utils/apiCalls/createComment";
+import { createComment } from "@/api_calls/createComment";
+import { deleteComment } from "@/api_calls/deleteComment";
+
 
 function Blog({ post }: Props) {
   const [user, setUser] = useState<User>();
@@ -50,8 +51,8 @@ function Blog({ post }: Props) {
       session,
       setIsLoading,
       setIsModalOpen,
-      setComments,
-      handleRefresh
+      setComments
+  
     );
   }
 

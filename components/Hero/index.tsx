@@ -1,10 +1,9 @@
 import Link from 'next/link'
-// import React from 'react'
 import { FaHandPointLeft } from 'react-icons/fa'
 import { signIn, useSession } from 'next-auth/react';
 
 
-const Homepage = () => {
+const Hero = () => {
   const{data:session} = useSession()
   return  <>
     <div className='flex justify-around py-5 md:px-3 md:py-18'>
@@ -35,4 +34,4 @@ const Homepage = () => {
   
 }
 
-export default Homepage
+export default Hero

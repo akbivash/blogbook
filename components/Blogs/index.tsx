@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { urlFor } from "@/sanity";
-import { getAllCategories } from "@/utils/apiCalls/getAllCategories";
 import { useGlobalContext } from "@/context/AppContext";
-import { getPostsByCategory } from "@/utils/apiCalls/getPostsByCategory";
 import { Post } from "@/typing";
+import { getAllCategories } from "@/api_calls/getAllCategories";
+import { getPostsByCategory } from "@/api_calls/getPostsByCategory";
 
 const Blogs = () => {
   const { setCategories, setPosts, state, setSelectedCategory } =
